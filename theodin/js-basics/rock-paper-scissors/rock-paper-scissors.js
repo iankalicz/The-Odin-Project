@@ -85,8 +85,11 @@ function game() {
     getResult(playersChoice, computersChoice)
     getWinner(result)
 
-    console.log(playersChoice)
-    console.log(computersChoice)
-    console.log(result)
+    console.log(`The players choice was: ${playersChoice}`)
+    console.log(`The computers choice was: ${computersChoice}`)
     console.log(winner)
+}
+
+for (let i = 1 ; i <= 5 ; i++) {
+    game()
 }
