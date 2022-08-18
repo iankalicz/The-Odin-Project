@@ -1,51 +1,92 @@
-let playersChoice = prompt("Write your choice here:",)
+let playersChoice
+
+function getPlayersChoice() {
+    playersChoice = prompt("Write your choice here:",)
+}
+
+let computersChoice
 
 function getComputersChoice() {
     let number = Math.floor(Math.random() * 3)
 
-    if(number === 1) {
-        return computersChoice = "rock"
+    if (number === 0) {
+        computersChoice = "rock"
+    } else if (number === 1) {
+        computersChoice = "paper"
     } else if (number === 2) {
-        return computersChoice = "paper"
-    } else {
-        return computersChoice = "scissors"
+        computersChoice = "scissors"
     }
 }
 
-function game(playerSelection, computerSelection) {
-    let winner
+var result
+
+function getResult(playerSelection, computerSelection) {
 
     if (playerSelection === "rock") {
-        if (computerSelection === "paper") {
-            winner = "You lose! Paper beats Rock!"
-        } else if (computerSelection !== "scissors") {
-            winner = "You won! Rock beats Scissors!"
-        } else if (computerSelection === "rock") {
-            winner = "It is a draw! Please play again!"
+        switch (computerSelection) {
+            case "paper":
+                result = "lose";
+                break;
+            case "scissors":
+                result = "won";
+                break;
+            case "rock":
+                result = "drawn"
+                break
+            default:
+                break;
         }
     } else if (playerSelection === "scissors") {
-        if (computerSelection === "rock") {
-            winner = "You lose! Rock beats Scissors!"
-        } else if (computerSelection === "paper") {
-            winner = "You won! Scissors beats Paper!"
-        } else if (computerSelection === "scissors") {
-            winner = "It is a draw! Please play again!"
+        switch (computerSelection) {
+            case "rock":
+                result = "lose";
+                break;
+            case "paper":
+                result = "won";
+                break;
+            case "scissors":
+                result = "drawn"
+                break
+            default:
+                break;
         }
     } else if (playerSelection === "paper") {
-        if (computerSelection === "scissors") {
-            winner = "You Lose! Scissors beats Paper!"
-        } else if (computerSelection === "rock") {
-            winner = "You won! Paper beats Rock!"
-        } else if (computerSelection === "paper") {
-            winner = "It is a draw! Please play again!"
+        switch (computerSelection) {
+            case "scissors":
+                result = "lose";
+                break;
+            case "rock":
+                result = "won";
+                break;
+            case "paper":
+                result = "drawn"
+                break
+            default:
+                break;
         }
-        }
-        console.log(`Players selection is: ${playerSelection}`)
-        console.log(`Computers selection is: ${computerSelection}`)
-        console.log(winner)
     }
+}
 
+let winner
 
-getComputersChoice()
-console.log(computersChoice)
-console.log(game(playersChoice, computersChoice))
+function getWinner(gameResult) {
+    if (gameResult === "won") {
+        winner = `You ${gameResult}! ${playersChoice} beats ${computersChoice}!`
+    } else if (gameResult === "lose") {
+        winner = `You ${gameResult}! ${computersChoice} beats ${playersChoice}!`
+    } else if (gameResult === "drawn") {
+        winner = `It is a ${gameResult}! Let's play again!`
+    }
+}
+
+function game() {
+    getPlayersChoice()
+    getComputersChoice()
+    getResult(playersChoice, computersChoice)
+    getWinner(result)
+
+    console.log(playersChoice)
+    console.log(computersChoice)
+    console.log(result)
+    console.log(winner)
+}
